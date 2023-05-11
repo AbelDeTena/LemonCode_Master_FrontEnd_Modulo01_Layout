@@ -1,0 +1,34 @@
+@import "./basics";
+
+.layout-1 {
+  @include column-flex;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(45deg, hsl(0, 0%, 100%), $secondColor);
+}
+
+.title-1 {
+  @include title($darkColor, $lightColor, $primaryColor);
+}
+.text-1 {
+  @extend .title-1;
+  font-size: x-large;
+}
+
+.main {
+  @include column-flex;
+  gap: 15px;
+  flex-grow: 1;
+  .box {
+    @include box-mixing;
+  }
+  .container-1 {
+    @include containerPalette($boxColor-1);
+  }
+  .container-2 {
+    @include containerPalette($boxColor-2);
+  }
+  .container-3 {
+    @include containerPalette($boxColor-3);
+  }
+}

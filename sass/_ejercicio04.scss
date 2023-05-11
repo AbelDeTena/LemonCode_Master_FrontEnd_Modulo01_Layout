@@ -1,0 +1,114 @@
+@import "./basics";
+
+.layout-4 {
+  @include column-flex;
+  height: 100vh;
+  width: 100vw;
+  background: radial-gradient(
+    at center bottom,
+    darken($accentColor, 20%),
+    $primaryColor
+  );
+}
+
+header {
+  h1 {
+    @include title(lighten($accentColor, 30%), $lightColor, $darkColor);
+  }
+  p {
+    @extend h1;
+  }
+}
+
+main {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 30px;
+  justify-content: center;
+
+  .card {
+    height: 400px;
+    width: 220px;
+    font-family: $lionFont;
+    background-color: lighten($accentColor, 30%);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3fr 5fr;
+    overflow: hidden;
+
+    &:hover {
+      .card-img {
+        img {
+          transform: scale(1.35);
+        }
+      }
+      .content {
+        .card-title {
+          animation: tiembla 0.2s;
+        }
+        @keyframes tiembla {
+          0% {
+            -webkit-transform: rotateZ(-5deg);
+          }
+          50% {
+            -webkit-transform: rotatey(-5deg);
+          }
+          100% {
+            -webkit-transform: rotateZ(5deg);
+          }
+        }
+      }
+    }
+
+    .card-img {
+      grid-column: 1/-1;
+      grid-row: 1/2;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+    }
+
+    .content {
+      grid-column: 1/-1;
+      grid-row: 2/3;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 2fr 4fr 1fr 1fr;
+      padding: 0.6em;
+      border: 2px solid $accentColor;
+
+      .card-title {
+        font-size: 28px;
+      }
+      .card-description {
+        font-size: 14px;
+        font-family: $mainFont;
+      }
+      .card-date {
+        font-size: 12px;
+        text-align: right;
+        font-weight: 700;
+        .card-date-accent {
+          color: $primaryColor;
+        }
+      }
+      .card-button {
+        cursor: pointer;
+        color: lighten($accentColor, 30%);
+        background: linear-gradient($boxColor-1, $primaryColor);
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+    }
+  }
+}

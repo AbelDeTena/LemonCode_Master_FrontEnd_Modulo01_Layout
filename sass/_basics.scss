@@ -1,0 +1,131 @@
+//Generic
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;  
+}
+// Fonts
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
+$mainFont: "Roboto", sans-serif;
+$secondFont: "Montserrat", sans-serif;
+// Colors
+$primaryColor: rgb(199, 0, 57);
+$secondColor: rgb(218, 247, 166);
+$accentColor: rgb(255, 195, 0);
+$darkColor: rgb(32, 32, 32);
+$lightColor: rgb(234, 234, 234);
+
+// Exercise 1
+//colors
+$boxColor-1: rgb(231, 76, 60);
+$boxColor-2: rgb(52, 152, 219);
+$boxColor-3: rgb(46, 204, 113);
+
+// Exercise 2
+//fonts
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap");
+$mainFont-b: "Ubuntu", sans-serif;
+$secondFont-b: "Raleway", sans-serif;
+//colors
+$primaryColor-b: rgb(0, 62, 102);
+$secondColor-b: rgb(111, 170, 255);
+$accentColor-b: rgb(31, 223, 69);
+
+//exercise 4
+@import url('https://fonts.cdnfonts.com/css/lion-king');
+$lionFont: 'Lion kinG', sans-serif;
+
+
+
+//mixing
+//generic mixin
+@mixin column-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@mixin title($mainColor, $secondColor, $thirdColor) {
+  font-family: $mainFont;
+  color: $mainColor;
+  padding: 1em;
+  text-align: center;
+  &::selection {
+    background-color: $thirdColor;
+    color: $secondColor;
+  }
+}
+//exercise 1 mixin
+@mixin box-mixing {
+  font-family: $mainFont;
+  color: $darkColor;
+  padding: 2em 0.5em;
+  border-radius: 5px;
+  @include column-flex;
+  &:hover {
+    transform: perspective(800px) rotatey(50deg);
+    transition: 0.5s;
+  }
+}
+@mixin containerPalette($color) {
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  gap: 0.5em;
+  display: flex;
+  .base-color {
+    width: 100px;
+    background-color: $color;
+  }
+  //dark bucle
+  @for $i from 1 through 4 {
+    & .darken-#{$i} {
+      background-color: darken($color, $i * 10%);
+      color: $lightColor;
+    }
+  }
+  //light bucle
+  @for $i from 1 through 4 {
+    & .lighten-#{$i} {
+      background-color: lighten($color, $i * 10%);
+    }
+  }
+}
+//exercise 2 mixin
+@mixin box-mixing-2($color) {
+  @include column-flex;
+  font-family: $mainFont;
+  height: 100px;
+  width: 100px;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: $color;
+  &.fonts {
+    .second-text {
+      font-family: $secondFont;
+    }
+  }
+  &.box-shadow {
+    box-shadow: -10px 10px 10px 0px $darkColor;
+  }
+}
+@mixin box-mixing-2-b($color) {
+  @include column-flex;
+  font-family: $mainFont-b;
+  height: 100px;
+  width: 100px;
+  border: 2px solid black;
+  border-radius: 2px;
+  background-color: $color;
+  &.fonts {
+    .second-text {
+      font-family: $secondFont-b;
+    }
+  }
+  &.box-shadow {
+    box-shadow: 10px 10px 10px 0px $darkColor;
+  }
+}
